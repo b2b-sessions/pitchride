@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+  <dict>
+    <!-- PitchRide isn't sandboxed (from 0.5.2): a sandboxed app can't
+         replace itself, so it couldn't update itself. It is still signed
+         with the hardened runtime and notarised by Apple; macOS still asks
+         before it uses the microphone or reads the Music, Downloads and
+         other protected folders. -->
+
+    <!-- HARDENED RUNTIME ENTITLEMENTS
+
+         See https://developer.apple.com/documentation/security/hardened_runtime for details.
+      -->
+    <!-- Allow interacting with the microphone -->
+    <key>com.apple.security.device.audio-input</key>
+    <true/>
+    <!-- Allow execution of JIT-compiled code
+         This is necessary for controller mappings that use Qt's JavaScript JIT compiler.
+      -->
+    <key>com.apple.security.cs.allow-jit</key>
+    <true/>
+    <!-- Allow unsigned executable memory
+         This is necessary for controller mappings that use Qt's JavaScript JIT compiler.
+      -->
+    <key>com.apple.security.cs.allow-unsigned-executable-memory</key>
+    <true/>
+  </dict>
+</plist>
